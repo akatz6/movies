@@ -19,16 +19,11 @@ class App extends Component {
     this.getUser();
   }
 
-  getUser()  {
-    axios.get("https://anapioficeandfire.com/api/characters/583")
-      .then(res =>{
-        const newUser ={
-          username:res.data.name
-        }
-        this.setState({
-          users:  newUser.username
-        })
-      }).catch((err) => {});
+  async getUser()  {
+    const result = await axios.get("https://anapioficeandfire.com/api/characters/583")
+    this.setState({
+            users:  result.data.name
+    })
   }
 
   getUserFavoritMovie = (username) => {
